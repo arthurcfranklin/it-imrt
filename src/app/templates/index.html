@@ -10,117 +10,267 @@
 
     <style>
         body {
-            background-color: #0f172a;
-            color: #e2e8f0;
+            background: #0f172a;
+            color: #e5e7eb;
+            font-family: Arial, Helvetica, sans-serif;
         }
 
-        .navbar {
-            background-color: #111827;
-            border-bottom: 1px solid #1f2937;
+        .sidebar {
+            width: 250px;
+            min-height: 100vh;
+            background: #020617;
+            border-right: 1px solid #1e293b;
+            position: fixed;
+            left: 0;
+            top: 0;
+            padding: 24px;
         }
 
-        .card {
-            background-color: #1e293b;
-            border: none;
-            border-radius: 15px;
-            color: white;
+        .sidebar-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 32px;
+        }
+
+        .sidebar-link {
+            display: block;
+            color: #94a3b8;
+            text-decoration: none;
+            padding: 12px 0;
+            font-size: 0.95rem;
+        }
+
+        .sidebar-link.active,
+        .sidebar-link:hover {
+            color: #38bdf8;
+        }
+
+        .main-content {
+            margin-left: 250px;
+            padding: 32px;
+        }
+
+        .page-title {
+            font-weight: 800;
+            font-size: 2rem;
+        }
+
+        .subtitle {
+            color: #94a3b8;
+        }
+
+        .metric-card {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            border: 1px solid #334155;
+            border-radius: 18px;
+            padding: 24px;
+            height: 140px;
+        }
+
+        .metric-label {
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+        }
+
+        .panel {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 18px;
+            padding: 24px;
         }
 
         .table {
+            --bs-table-bg: transparent;
+            --bs-table-color: #e5e7eb;
+            --bs-table-border-color: #334155;
+        }
+
+        .table thead th {
+            color: #cbd5e1;
+            background: #0f172a;
+            border-bottom: 1px solid #334155;
+        }
+
+        .badge-online {
+            background: #16a34a;
             color: white;
+            padding: 6px 12px;
+            border-radius: 999px;
+            font-size: 0.8rem;
         }
 
-        .table-dark {
-            background-color: #111827;
-        }
-
-        .status-online {
-            background: #198754;
+        .badge-offline {
+            background: #dc2626;
             color: white;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 0.85rem;
+            padding: 6px 12px;
+            border-radius: 999px;
+            font-size: 0.8rem;
         }
 
-        .status-offline {
-            background: #dc3545;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 0.85rem;
+        .badge-maintenance {
+            background: #f59e0b;
+            color: #111827;
+            padding: 6px 12px;
+            border-radius: 999px;
+            font-size: 0.8rem;
         }
 
-        .dashboard-title {
-            font-weight: 700;
+        .btn-primary-custom {
+            background: #2563eb;
+            border: none;
         }
 
-        .btn-delete {
-            border-radius: 20px;
+        .btn-primary-custom:hover {
+            background: #1d4ed8;
+        }
+
+        .form-control,
+        .form-select {
+            background: #0f172a;
+            border: 1px solid #334155;
+            color: #e5e7eb;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            background: #0f172a;
+            color: #e5e7eb;
+            border-color: #38bdf8;
+            box-shadow: none;
+        }
+
+        .modal-content {
+            background: #1e293b;
+            color: #e5e7eb;
+            border: 1px solid #334155;
+        }
+
+        .modal-alert-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.7rem;
+            margin: 0 auto 16px auto;
+        }
+
+        .modal-alert-error {
+            background: rgba(220, 38, 38, 0.15);
+            color: #f87171;
+            border: 1px solid #dc2626;
+        }
+
+        .modal-alert-success {
+            background: rgba(22, 163, 74, 0.15);
+            color: #4ade80;
+            border: 1px solid #16a34a;
+        }
+
+        .btn-action {
+            border-radius: 999px;
             padding: 4px 12px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 900px) {
+            .sidebar {
+                position: static;
+                width: 100%;
+                min-height: auto;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <nav class="navbar navbar-dark">
-        <div class="container-fluid">
-            <span class="navbar-brand mb-0 h1">IT-IMRT</span>
-        </div>
-    </nav>
+    <aside class="sidebar">
+        <div class="sidebar-title">IT-IMRT</div>
 
-    <div class="container mt-4">
+        <a href="/dashboard" class="sidebar-link active">Dashboard</a>
+        <a href="/docs" class="sidebar-link">API Documentation</a>
+        <a href="#" class="sidebar-link">Monitoring</a>
+        <a href="#" class="sidebar-link">Reports</a>
+        <a href="#" class="sidebar-link">Settings</a>
+    </aside>
 
-        <h2 class="dashboard-title">Infrastructure Monitoring Dashboard</h2>
+    <main class="main-content">
 
-        <p class="text-secondary">
-            IT Infrastructure Monitoring & Asset Reporting Tool
-        </p>
-
-        <div class="row mb-4">
-
-            <div class="col-md-4 mb-3">
-                <div class="card p-3 text-center">
-                    <h6>Total Assets</h6>
-                    <h1>{{ total_assets }}</h1>
-                </div>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h1 class="page-title">Infrastructure Monitoring Dashboard</h1>
+                <p class="subtitle mb-0">
+                    Asset inventory, operational visibility and infrastructure reporting.
+                </p>
             </div>
 
-            <div class="col-md-4 mb-3">
-                <div class="card p-3 text-center">
-                    <h6>Online Assets</h6>
-                    <h1>{{ online_assets }}</h1>
-                </div>
-            </div>
-
-            <div class="col-md-4 mb-3">
-                <div class="card p-3 text-center">
-                    <h6>Offline Assets</h6>
-                    <h1>{{ offline_assets }}</h1>
-                </div>
-            </div>
-
+            <button class="btn btn-primary btn-primary-custom" data-bs-toggle="modal" data-bs-target="#createAssetModal">
+                + New Asset
+            </button>
         </div>
 
-        <div class="card p-4">
+        <div class="row g-4 mb-4">
+            <div class="col-md-4">
+                <div class="metric-card">
+                    <div class="metric-label">Total Assets</div>
+                    <div class="metric-value">{{ total_assets }}</div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="metric-card">
+                    <div class="metric-label">Online Assets</div>
+                    <div class="metric-value">{{ online_assets }}</div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="metric-card">
+                    <div class="metric-label">Offline Assets</div>
+                    <div class="metric-value">{{ offline_assets }}</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel">
 
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <h4 class="mb-0">Asset Inventory</h4>
-                <span class="text-secondary">Current registered assets</span>
+                <div>
+                    <h4 class="mb-1">Asset Inventory</h4>
+                    <p class="subtitle mb-0">Registered infrastructure assets</p>
+                </div>
+
+                <form method="get" action="/dashboard" class="d-flex gap-2">
+                    <input type="text" name="search" value="{{ search }}" class="form-control"
+                        placeholder="Search hostname, IP, OS or status">
+                    <button class="btn btn-outline-info" type="submit">Search</button>
+                    <a href="/dashboard" class="btn btn-outline-secondary">Clear</a>
+                </form>
             </div>
 
             <div class="table-responsive">
                 <table class="table table-hover align-middle">
 
-                    <thead class="table-dark">
+                    <thead>
                         <tr>
                             <th>ID</th>
                             <th>Hostname</th>
                             <th>IP Address</th>
                             <th>Operating System</th>
+                            <th>Type</th>
                             <th>Status</th>
-                            <th>Ações</th>
+                            <th class="text-end">Actions</th>
                         </tr>
                     </thead>
 
@@ -131,23 +281,90 @@
                             <td>{{ asset.hostname }}</td>
                             <td>{{ asset.ip_address }}</td>
                             <td>{{ asset.operating_system }}</td>
-
+                            <td>{{ asset.asset_type }}</td>
                             <td>
                                 {% if asset.status.lower() == "online" %}
-                                <span class="status-online">Online</span>
+                                <span class="badge-online">Online</span>
+                                {% elif asset.status.lower() == "offline" %}
+                                <span class="badge-offline">Offline</span>
                                 {% else %}
-                                <span class="status-offline">Offline</span>
+                                <span class="badge-maintenance">{{ asset.status }}</span>
                                 {% endif %}
                             </td>
 
-                            <td>
-                                <a href="/assets/delete/{{ asset.id }}"
-                                   class="btn btn-sm btn-danger btn-delete"
-                                   onclick="return confirm('Deseja realmente excluir este ativo?');">
-                                    Excluir
-                                </a>
+                            <td class="text-end">
+                                <button class="btn btn-sm btn-outline-info btn-action" data-bs-toggle="modal"
+                                    data-bs-target="#editAssetModal{{ asset.id }}">
+                                    Edit
+                                </button>
+
+                                <form method="post" action="/dashboard/assets/delete/{{ asset.id }}" class="d-inline"
+                                    onsubmit="return confirm('Deseja realmente excluir este ativo?');">
+                                    <button type="submit" class="btn btn-sm btn-danger btn-action">
+                                        Delete
+                                    </button>
+                                </form>
                             </td>
                         </tr>
+
+                        <div class="modal fade" id="editAssetModal{{ asset.id }}" tabindex="-1">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Edit Asset #{{ asset.id }}</h5>
+                                        <button type="button" class="btn-close btn-close-white"
+                                            data-bs-dismiss="modal"></button>
+                                    </div>
+
+                                    <form method="post" action="/dashboard/assets/update/{{ asset.id }}">
+                                        <div class="modal-body">
+
+                                            <div class="mb-3">
+                                                <label class="form-label">Hostname</label>
+                                                <input type="text" name="hostname" class="form-control"
+                                                    value="{{ asset.hostname }}" required>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label class="form-label">IP Address</label>
+                                                <input type="text" name="ip_address" class="form-control"
+                                                    value="{{ asset.ip_address }}" required>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label class="form-label">Operating System</label>
+                                                <input type="text" name="operating_system" class="form-control"
+                                                    value="{{ asset.operating_system }}" required>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label class="form-label">Asset Type</label>
+                                                <input type="text" name="asset_type" class="form-control"
+                                                    value="{{ asset.asset_type }}" required>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label class="form-label">Status</label>
+                                                <select name="status" class="form-select" required>
+                                                    <option value="Online" {% if asset.status=="Online" %}selected{% endif %}>Online</option>
+                                                    <option value="Offline" {% if asset.status=="Offline" %}selected{% endif %}>Offline</option>
+                                                    <option value="Maintenance" {% if asset.status=="Maintenance" %}selected{% endif %}>Maintenance</option>
+                                                </select>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Cancel</button>
+                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
                         {% endfor %}
                     </tbody>
 
@@ -156,7 +373,122 @@
 
         </div>
 
+    </main>
+
+    <div class="modal fade" id="createAssetModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title">Create New Asset</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+
+                <form method="post" action="/dashboard/assets/create">
+                    <div class="modal-body">
+
+                        <div class="mb-3">
+                            <label class="form-label">Hostname</label>
+                            <input type="text" name="hostname" class="form-control" placeholder="SRV-ZABBIX-01" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">IP Address</label>
+                            <input type="text" name="ip_address" class="form-control" placeholder="192.168.1.10" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Operating System</label>
+                            <input type="text" name="operating_system" class="form-control"
+                                placeholder="Ubuntu Server 24.04" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Asset Type</label>
+                            <input type="text" name="asset_type" class="form-control" placeholder="Server" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Status</label>
+                            <select name="status" class="form-select" required>
+                                <option value="Online">Online</option>
+                                <option value="Offline">Offline</option>
+                                <option value="Maintenance">Maintenance</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Create Asset</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
     </div>
 
+    {% if error %}
+    <div class="modal fade" id="errorModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-center p-4">
+
+                <div class="modal-alert-icon modal-alert-error">!</div>
+
+                <h4 class="mb-3">Erro na operação</h4>
+
+                <p class="subtitle mb-4">{{ error }}</p>
+
+                <div>
+                    <a href="/dashboard" class="btn btn-danger">
+                        Sair
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if success %}
+    <div class="modal fade" id="successModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-center p-4">
+
+                <div class="modal-alert-icon modal-alert-success">✓</div>
+
+                <h4 class="mb-3">Operação concluída</h4>
+
+                <p class="subtitle mb-4">{{ success }}</p>
+
+                <div>
+                    <a href="/dashboard" class="btn btn-success">
+                        Sair
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+    {% if error %}
+    <script>
+        const errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
+        errorModal.show();
+    </script>
+    {% endif %}
+
+    {% if success %}
+    <script>
+        const successModal = new bootstrap.Modal(document.getElementById('successModal'));
+        successModal.show();
+    </script>
+    {% endif %}
+
 </body>
+
 </html>
