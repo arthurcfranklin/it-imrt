@@ -2,6 +2,7 @@ from fastapi import FastAPI, Form, HTTPException, Query, Request
 from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
 from sqlalchemy.exc import IntegrityError
+from fastapi.staticfiles import StaticFiles
 
 from src.app.api.assets import router as assets_router
 from src.app.database.db import Base, SessionLocal, engine
@@ -13,6 +14,12 @@ app = FastAPI(
     title="IT-IMRT API",
     description="API for IT infrastructure monitoring and asset reporting.",
     version="0.1.0-alpha",
+)
+
+app.mount(
+    "/static",
+    StaticFiles(directory="src/app/static"),
+    name="static"
 )
 
 templates = Jinja2Templates(directory="src/app/templates")
