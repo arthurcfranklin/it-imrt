@@ -78,6 +78,7 @@ def dashboard(
 def create_asset_web(
     hostname: str = Form(...),
     ip_address: str = Form(...),
+    url: str | None = Form(default=None),
     operating_system: str = Form(...),
     asset_type: str = Form(...),
     status: str = Form(...),
@@ -87,6 +88,7 @@ def create_asset_web(
     new_asset = Asset(
         hostname=hostname,
         ip_address=ip_address,
+        url=url,
         operating_system=operating_system,
         asset_type=asset_type,
         status=status,
@@ -99,7 +101,7 @@ def create_asset_web(
         db.rollback()
         db.close()
         return RedirectResponse(
-            url="/dashboard?error=Este endereço IP já está cadastrado em outro ativo.",
+            url="/dashboard?error=Hostname ou endereço IP já cadastrado em outro ativo.",
             status_code=303,
         )
 
@@ -116,6 +118,7 @@ def update_asset_web(
     asset_id: int,
     hostname: str = Form(...),
     ip_address: str = Form(...),
+    url: str | None = Form(default=None),
     operating_system: str = Form(...),
     asset_type: str = Form(...),
     status: str = Form(...),
@@ -133,6 +136,7 @@ def update_asset_web(
     asset.operating_system = operating_system
     asset.asset_type = asset_type
     asset.status = status
+    asset.url = url
 
     try:
         db.commit()
@@ -140,7 +144,7 @@ def update_asset_web(
         db.rollback()
         db.close()
         return RedirectResponse(
-            url="/dashboard?error=Este endereço IP já está cadastrado em outro ativo.",
+            url="/dashboard?error=Hostname ou endereço IP já cadastrado em outro ativo.",
             status_code=303,
         )
 

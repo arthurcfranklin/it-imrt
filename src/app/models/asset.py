@@ -8,8 +8,9 @@ class Asset(Base):
     __tablename__ = "assets"
 
     id = Column(Integer, primary_key=True, index=True)
-    hostname = Column(String, nullable=False, index=True)
+    hostname = Column(String, nullable=False, unique=True, index=True)
     ip_address = Column(String, nullable=False, unique=True, index=True)
+    url = Column(String, nullable=True)
     operating_system = Column(String, nullable=True)
     asset_type = Column(String, nullable=False)
     status = Column(String, nullable=False, default="Unknown")
