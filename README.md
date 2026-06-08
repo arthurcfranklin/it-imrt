@@ -6,99 +6,175 @@
 ![SQLite](https://img.shields.io/badge/SQLite-Database-003B57?logo=sqlite)
 ![License](https://img.shields.io/badge/Licença-MIT-green)
 
-**Versão Atual:** v0.1.0-alpha
+**Versão Atual:** v0.2.0-alpha
+
+---
 
 ## 📖 Sobre o Projeto
 
-O InfraTrack é um projeto voltado à automação de inventário e monitoramento de infraestrutura de TI.
+O InfraTrack é uma plataforma web voltada ao inventário e monitoramento de infraestrutura de TI.
 
-A proposta é centralizar informações de ativos, acompanhar a disponibilidade de dispositivos e gerar relatórios operacionais por meio de uma interface web, simulando cenários encontrados em ambientes corporativos.
+O projeto tem como objetivo centralizar informações de ativos, disponibilizar consultas operacionais por meio de dashboard web e evoluir para uma solução capaz de monitorar disponibilidade, registrar eventos e gerar relatórios operacionais.
 
-O projeto está sendo desenvolvido como iniciativa de aprimoramento técnico em infraestrutura, monitoramento, automação e desenvolvimento de soluções para gestão de ambientes de TI.
+Desenvolvido utilizando FastAPI, SQLite e Bootstrap, o projeto simula cenários encontrados em ambientes corporativos, servindo como laboratório prático para estudos em infraestrutura, monitoramento, automação e desenvolvimento de soluções para gestão de ambientes de TI.
 
+---
+
+## ✨ Funcionalidades Atuais
+
+### Inventário de Ativos
+
+* Cadastro de ativos
+* Edição de ativos
+* Exclusão de ativos
+* Associação de URL aos ativos
+* Consulta de inventário
+
+### Dashboard Web
+
+* Interface responsiva
+* Cards de indicadores
+* Visualização centralizada dos ativos
+* Pesquisa por ativos
+* Ordenação de registros
+* Filtro por status
+
+### Validações
+
+* Bloqueio de IP duplicado
+* Bloqueio de hostname duplicado
+* Normalização automática de hostname
+* Tratamento de erros operacionais
+* Feedback visual por modais
+
+---
 
 ## 🎯 Objetivos
 
-- Centralizar informações de ativos de TI;
-- Automatizar a coleta de inventário;
-- Monitorar disponibilidade de dispositivos;
-- Gerar relatórios operacionais;
-- Disponibilizar informações por meio de uma interface web.
+* Centralizar informações de ativos de TI
+* Automatizar processos de inventário
+* Monitorar disponibilidade de dispositivos
+* Registrar eventos operacionais
+* Disponibilizar informações por meio de dashboard web
+* Evoluir para uma plataforma de observabilidade simplificada
+
+---
 
 ## 🛠️ Tecnologias
 
-- Python
-- FastAPI
-- SQLite
-- HTML5
-- CSS3
-- Bootstrap
-- Git
-- GitHub
+### Backend
 
-## 🏗️ Arquitetura Planejada
+* Python
+* FastAPI
+* SQLAlchemy
+* SQLite
+
+### Frontend
+
+* HTML5
+* CSS3
+* Bootstrap 5
+* Jinja2
+
+### Versionamento
+
+* Git
+* GitHub
+
+---
+
+## 🏗️ Arquitetura
 
 ```text
 Usuário
    │
    ▼
-Interface Web
+Dashboard Web
    │
    ▼
 FastAPI
    │
-   ├── Módulo de Inventário
-   ├── Módulo de Monitoramento
-   └── Módulo de Relatórios
+   ├── Inventário de Ativos
+   ├── Dashboard
+   ├── Monitoramento
+   └── Relatórios
    │
    ▼
 SQLite
 ```
 
+---
+
 ## 🗺️ Roadmap
 
 ### Fase 1 - Planejamento e Estruturação
-- [x] Criação do repositório
-- [x] Configuração inicial do projeto
-- [x] Definição da arquitetura
-- [x] Estruturação das pastas
+
+* [x] Criação do repositório
+* [x] Configuração inicial do projeto
+* [x] Definição da arquitetura
+* [x] Estruturação das pastas
 
 ### Fase 2 - Inventário de Ativos
-- [x] Modelagem do banco de dados
-- [x] Cadastro de ativos
-- [ ] Coleta de informações do sistema
+
+* [x] Modelagem do banco de dados
+* [x] Cadastro de ativos
+* [x] Edição de ativos
+* [x] Exclusão de ativos
+* [x] Pesquisa de ativos
+* [x] Filtro por status
+* [x] Ordenação de registros
+* [ ] Coleta automática de informações do sistema
 
 ### Fase 3 - Dashboard Web
-- [x] Interface web
-- [x] Visualização de ativos
-- [x] Consulta de informações
+
+* [x] Interface web
+* [x] Visualização de ativos
+* [x] Consulta de informações
+* [x] Dashboard operacional
 
 ### Fase 4 - Monitoramento
-- [ ] Monitoramento ICMP
-- [ ] Histórico de disponibilidade
-- [ ] Registro de eventos
+
+* [ ] Monitoramento ICMP
+* [ ] Histórico de disponibilidade
+* [ ] Registro de eventos
+* [ ] Latência dos ativos
+* [ ] Verificação automática de status
+
+---
 
 ## 📂 Estrutura do Projeto
 
 ```text
-it-imrt/
+infratrack/
 │
 ├── docs/
 ├── src/
+│   ├── app/
+│   ├── database/
+│   ├── models/
+│   ├── schemas/
+│   └── templates/
+│
 ├── tests/
 ├── requirements.txt
 ├── README.md
 └── LICENSE
 ```
 
+---
+
 ## 📈 Status do Projeto
 
 🚧 Em desenvolvimento
 
-Fase atual: Planejamento e definição da arquitetura inicial.
+**Fase atual:** Inventário de Ativos e Dashboard Web concluídos.
+
+**Próximo marco:** Implementação do monitoramento ICMP e histórico de disponibilidade.
+
+---
 
 ## 👨‍💻 Autor
 
 Arthur Franklin
 
-Auxiliar de TI | Suporte Técnico | Infraestrutura | Monitoramento | Automação
+Auxiliar de TI | Infraestrutura | Monitoramento | Automação | Python
